@@ -1,3 +1,4 @@
+  
 vse: &vse
   docker:
     - image: circleci/node:8.11.3
@@ -16,12 +17,13 @@ jobs:
          paths:
             - .
   deploy:
-    <<: *vse
-    steps:
-      - attach_workspace:
-         at: .
-      - run: 
-          command: ./node_modules/.bin/firebase deploy --token=&FIREBASE_TOKEN
+     <<: *vse
+     steps:
+        - attach_workspace:
+           at: .
+        - run:
+           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+
 workflows:
   version: 2.1
   build:
